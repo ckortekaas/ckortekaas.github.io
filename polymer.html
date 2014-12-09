@@ -11,28 +11,21 @@
             && 'content' in document.createElement('template'))) {
       document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.5.1-1/webcomponents.js"><\/script>');
 
+    } else {
+      this.dodgy.style.display = 'none';
     }
   </script>
 </head>
 <body unresolved fullbleed>
 
-<div id="good" unresolved> I am a good web browser! </div>
+<div id="good"> I am a good web browser! </div>
 <div id="dodgy"> I am a dodgy web browser!</div>
 <script>
-  (onload = function () {
-    if (!this.good.hasAttribute('unresolved')) {
+  (window.onload = function () {
+    if (this.body.hasAttribute('unresolved')) {
       this.dodgy.style.display = 'none';
     }
   });
-  //if (this.body.hasAttribute('unresolved')) {
-    (function () {
-      Polymer({
-        ready: function () {
-          this.dodgy.style.display = 'none';
-        }
-      })
-    })();
-  //}
 </script>
 </body>
 </html>
