@@ -15,11 +15,13 @@
       this.dodgy.style.display = 'none';
     }
   </script>
+  <link rel="import" href="//www.polymer-project.org/components/polymer/polymer.html">
 </head>
 <body unresolved fullbleed>
 
 <div id="good"> I am a good web browser! </div>
 <div id="dodgy"> I am a dodgy web browser!</div>
+
 <script>
   (window.onload = function () {
     if (this.body.hasAttribute('unresolved')) {
