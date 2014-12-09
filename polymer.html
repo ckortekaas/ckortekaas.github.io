@@ -16,16 +16,12 @@
 </head>
 <body fullbleed>
 
-<p unresolved> I am a good web browser! </p>
+<p id="good" unresolved> I am a good web browser! </p>
 <p id="dodgy"> I am a dodgy web browser!</p>
 <script>
-  (function() {
-    Polymer('uqlibrary-home', {
-      ready: function() {
-        this.dodgy.style.display = 'none';
-      }
-    })
-  })();
+  if (!this.good.hasAttribute('unresolved')) {
+    this.dodgy.style.display = 'none';
+  }
 </script>
 </body>
 </html>
