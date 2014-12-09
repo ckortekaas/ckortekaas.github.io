@@ -19,8 +19,10 @@
 <p id="good" unresolved> I am a good web browser! </p>
 <p id="dodgy"> I am a dodgy web browser!</p>
 <script>
-  if (!this.good.hasAttribute('unresolved')) {
-    this.dodgy.style.display = 'none';
+  window.onload = function () {
+    if (!this.good.hasAttribute('unresolved')) {
+      this.dodgy.style.display = 'none';
+    }
   }
 </script>
 </body>
