@@ -17,7 +17,15 @@
 <body fullbleed>
 
 <p unresolved> I am a good web browser! </p>
-<p> I am a dodgy web browser!</p>
-
+<p id="dodgy"> I am a dodgy web browser!</p>
+<script>
+  (function() {
+    Polymer('uqlibrary-home', {
+      ready: function() {
+        this.$.dodgy.style.display = 'none';
+      }
+    })
+  })();
+</script>
 </body>
 </html>
