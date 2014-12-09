@@ -14,15 +14,24 @@
     }
   </script>
 </head>
-<body fullbleed>
+<body unresolved fullbleed>
 
 <p id="good" unresolved> I am a good web browser! </p>
 <p id="dodgy"> I am a dodgy web browser!</p>
 <script>
-  window.onload = function () {
+  (onload = function () {
     if (!this.good.hasAttribute('unresolved')) {
       this.dodgy.style.display = 'none';
     }
+  });
+  if (this.body.hasAttribute('unresolved')) {
+    (function () {
+      Polymer('uqlibrary-home', {
+        ready: function () {
+          this.dodgy.style.display = 'none';
+        }
+      })
+    })();
   }
 </script>
 </body>
