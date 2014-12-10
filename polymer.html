@@ -33,7 +33,21 @@
       document.getElementById('dodgy').style.display = 'none';
     });
 }());
-var $buoop = {c:2};
+var $buoop = {
+  vs: {i:10,f:15,o:9.63,s:6,c:36},  // browser versions to notify
+  reminder: 0,                   // atfer how many hours should the message reappear
+                                  // 0 = show all the time
+  onshow: function(infos){},      // callback function after the bar has appeared
+  onclick: function(infos){},      // callback function if bar was clicked
+
+  l: false,                       // set a language for the message, e.g. "en"
+                                  // overrides the default detection
+  test: false,                    // true = always show the bar (for testing)
+  text: "",                       // custom notification html text
+  text_xx: "",                    // custom notification text for language "xx"
+                                  // e.g. text_de for german and text_it for italian
+  newwindow: true                 // open link in new window/tab
+};
 function $buo_f(){
   var e = document.createElement("script");
   e.src = "//browser-update.org/update.js";
