@@ -28,11 +28,7 @@
 //      this.dodgy.style.display = 'none';
 //    }
 //  });
-(function () {
-    window.addEventListener('polymer-ready', function() {
-      document.getElementById('dodgy').style.display = 'none';
-    });
-}());
+
 var $buoop = {
   vs: {i:10,f:15,o:9.63,s:6,c:36},  // browser versions to notify
   reminder: 0,                   // atfer how many hours should the message reappear
@@ -53,7 +49,14 @@ function $buo_f(){
   e.src = "//browser-update.org/update.js";
   document.body.appendChild(e);
 };
-try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+try {
+  document.addEventListener("DOMContentLoaded", $buo_f,false)
+  (function () {
+    window.addEventListener('polymer-ready', function() {
+      document.getElementById('dodgy').style.display = 'none';
+    });
+  }());
+}
 catch(e){window.attachEvent("onload", $buo_f)}
 </script>
 </body>
