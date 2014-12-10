@@ -35,7 +35,7 @@
 //  });
 
 var $buoop = {
-  vs: {i:10,f:15,o:9.63,s:6,c:36},  // browser versions to notify
+  vs: {i:10,f:15,o:9.63,s:6,c:39},  // browser versions to notify
   reminder: 0,                   // atfer how many hours should the message reappear
                                   // 0 = show all the time
   onshow: function(infos){},      // callback function after the bar has appeared
@@ -44,7 +44,7 @@ var $buoop = {
   l: false,                       // set a language for the message, e.g. "en"
                                   // overrides the default detection
   test: false,                    // true = always show the bar (for testing)
-  text: "",                       // custom notification html text
+  text: "Please upgrade to the latest version of <a href='http://www.google.com/chrome'>Google Chrome</a> to get the best experience on this site",                       // custom notification html text
   text_xx: "",                    // custom notification text for language "xx"
                                   // e.g. text_de for german and text_it for italian
   newwindow: true                 // open link in new window/tab
