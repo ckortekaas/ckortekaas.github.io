@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>Polymer browser compatibility testing</title>
   <script>
-    if (! ('registerElement' in document
+    function isIE () {
+      var myNav = navigator.userAgent.toLowerCase();
+      return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+    }
+
+    if ((isIE () > 9) && ! ('registerElement' in document
             && 'createShadowRoot' in HTMLElement.prototype
             && 'import' in document.createElement('link')
             && 'content' in document.createElement('template'))) {
