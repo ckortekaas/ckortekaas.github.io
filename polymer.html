@@ -12,17 +12,16 @@
       document.write('<script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.5.1-1/webcomponents.js"><\/script>');
       document.write('<script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"><\/script>');
         document.write('<script type="text/javascript" src="pgwbrowser.min.js"><\/script>');
+
     }
   </script>
   <link rel="import" href="//www.polymer-project.org/components/polymer/polymer.html">
 </head>
 <body unresolved fullbleed>
 <div id="supportedBrowser">Good Browser!</div>
-<div id="unsupportedBrowser"> Unfortunately your browser is not supported. Please upgrade to
-    <a href='http://www.google.com/chrome'>Google Chrome</a> or another modern web browser and come back again.
-    <br />If you are using Android, you can <a href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=en">download Google Chrome for Android on the Play Store</a>.
-    <br /><br />If you are using IOS, we can only support IOS6+.
-    <br /><br />You can still use <a href="https://www.library.uq.edu.au/mylibrary">the old version of MyLibrary</a>.
+<div id="unsupportedBrowser"> We're sorry, but your browser is not supported by the system.
+    <script type="text/javascript">
+    </script>
 </div>
 
 <script>
@@ -49,11 +48,48 @@
         document.addEventListener("DOMContentLoaded", $buo_f,false)
         (function () {
             window.addEventListener('polymer-ready', function() {
-                document.getElementById('unsupportedBrowser').style.display = 'none';
+                //document.getElementById('unsupportedBrowser').style.display = 'none';
             });
         }());
     }
-    catch(e){window.attachEvent("onload", $buo_f)}
+    catch(e) {
+        if (window.jQuery) {
+            $(document).ready(function () {
+                var pgwBrowser = $.pgwBrowser();
+                var e = document.createElement("div");
+                e.id = "browserDetails";
+                switch (pgwBrowser.os.group) {
+                    case 'iOS':
+                        if (pgwBrowser.os.majorVersion < 6) {
+                            e.innerHTML = '<br \/><br \/>You are currently using an unsupported version of Safari bundled with Apple iOS version ' + pgwBrowser.os.fullVersion + '. We can only support Safari in Apple iOS version 6 and above.'
+                        }
+                        break;
+                    case 'Windows Phone':
+                        if (pgwBrowser.os.majorVersion < 8 && pgwBrowser.os.minorVersion < 1) {
+                            e.innerHTML = '<br \/><br \/>You are currently using a version of Windows Phone older than version 8.1 (version ' + pgwBrowser.os.fullVersion + '). We can only support version 8.1 and above.'
+                        }
+                        break;
+                    case 'Android':
+                        if (pgwBrowser.os.majorVersion < 4 && pgwBrowser.os.minorVersion < 4) {
+                            e.innerHTML = '<br \/><br \/>Since you are using Android (version ' + pgwBrowser.os.fullVersion + ') you can upgrade from the old Android Browser to <a href=\'https:\/\/play.google.com\/store\/apps\/details?id=com.android.chrome&hl=en\'>Google Chrome for Android<\/a> to get a faster, and compatible web experience.';
+                        }
+                        break;
+                }
+                document.body.appendChild(e);
+                var o = document.createElement("div");
+                o.id = "browserDetailsOld";
+                o.innerHTML = "<br \/><br \/>You can still use <a href=\'https:\/\/www.library.uq.edu.au\/mylibrary\'>the old version of MyLibrary<\/a>.";
+                document.body.appendChild(o);
+            });
+        }
+        if (window.addEventListener) {
+            window.addEventListener("onload", $buo_f, false);
+        } else if (window.attachEvent) {
+            window.attachEvent("onload", $buo_f);
+        } else {
+            window["onload"] = $buo_f;
+        }
+    }
 </script>
 </body>
 </html>
